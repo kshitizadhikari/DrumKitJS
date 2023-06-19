@@ -36,6 +36,9 @@ button {
   background-position: center;
   background-size: contain;
   cursor: pointer;
+  font-size: 3rem;
+  font-weight: bold;
+  font-style: oblique;
 }
 .a {
   background-image: url("images/tom1.png");

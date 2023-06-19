@@ -1,49 +1,55 @@
 var drums = document.querySelectorAll(".drum");
-
 var numberOfDrums = drums.length;
 
+// DETECT MOUSE CLICK
 for (var i = 0; i < numberOfDrums; i++) {
   drums[i].addEventListener("click", function () {
     var buttonClicked = this.textContent;
-
-    switch (buttonClicked) {
-      case "a":
-        var audio = new Audio("sound/tom-1.mp3");
-        audio.play();
-        break;
-
-      case "s":
-        var audio = new Audio("sound/tom-2.mp3");
-        audio.play();
-        break;
-
-      case "d":
-        var audio = new Audio("sound/tom-3.mp3");
-        audio.play();
-        break;
-
-      case "f":
-        var audio = new Audio("sound/tom-4.mp3");
-        audio.play();
-        break;
-
-      case "j":
-        var audio = new Audio("sound/snare.mp3");
-        audio.play();
-        break;
-
-      case "k":
-        var audio = new Audio("sound/crash.mp3");
-        audio.play();
-        break;
-
-      case "l":
-        var audio = new Audio("sound/kick-bass.mp3");
-        audio.play();
-        break;
-    }
+    identifyClickOrKeyPress(buttonClicked);
   });
 }
 
-// var audio = new Audio("sound/tom-1.mp3");
-// audio.play();
+// DETECT KEY PRESS
+document.addEventListener("keydown", function (event) {
+  identifyClickOrKeyPress(event.key);
+});
+
+function identifyClickOrKeyPress(action) {
+  switch (action) {
+    case "a":
+      playSound("tom-1");
+      break;
+
+    case "s":
+      playSound("tom-2");
+      break;
+
+    case "d":
+      playSound("tom-3");
+      break;
+
+    case "f":
+      playSound("tom-4");
+      break;
+
+    case "j":
+      playSound("snare");
+      break;
+
+    case "k":
+      playSound("crash");
+      break;
+
+    case "l":
+      playSound("kick-bass");
+      break;
+
+    default:
+      break;
+  }
+}
+
+function playSound(soundName) {
+  var audio = new Audio("sound/" + soundName + ".mp3");
+  audio.play();
+}
