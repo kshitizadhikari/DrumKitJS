@@ -6,12 +6,14 @@ for (var i = 0; i < numberOfDrums; i++) {
   drums[i].addEventListener("click", function () {
     var buttonClicked = this.textContent;
     identifyClickOrKeyPress(buttonClicked);
+    buttonAnimation(buttonClicked);
   });
 }
 
 // DETECT KEY PRESS
 document.addEventListener("keydown", function (event) {
   identifyClickOrKeyPress(event.key);
+  buttonAnimation(event.key);
 });
 
 function identifyClickOrKeyPress(action) {
@@ -52,4 +54,13 @@ function identifyClickOrKeyPress(action) {
 function playSound(soundName) {
   var audio = new Audio("sound/" + soundName + ".mp3");
   audio.play();
+}
+
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("buttonClicked");
+
+  setTimeout(function () {
+    activeButton.classList.remove("buttonClicked");
+  }, 250);
 }
